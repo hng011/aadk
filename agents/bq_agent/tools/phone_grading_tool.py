@@ -70,7 +70,7 @@ class PhoneGradingTool:
 
     def grade_phone_tool(self, tool_context: ToolContext, additional_description: str = None) -> str:
         
-        """Grades the phone based on images and description.
+        """Grades the phone based on the given images.
 
         Args:
             tool_context: The tool context.

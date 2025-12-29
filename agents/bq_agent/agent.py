@@ -7,6 +7,7 @@ from google.adk.tools.bigquery.bigquery_credentials import BigQueryCredentialsCo
 from google.adk.tools.bigquery.config import BigQueryToolConfig, WriteMode
 
 from agents.bq_agent.tools.phone_grading_tool import grade_phone_tool
+from agents.bq_agent.agent_config import CONFIG_1
 
 
 application_default_credentials, _ = google.auth.default()
@@ -43,9 +44,11 @@ Core Objectives:
 
 Strict Operational Rules:
 - Tool Usage: 
-    Always use tool to answer question, and the following definitions explain the criteria of which tool you are going to use: 
-    - Use `bq_toolset` for general data lookup (Project: {settings.GOOGLE_CLOUD_PROJECT}).
+    Always use tool **immediately** to answer question, and the following definitions explain the criteria of which tool you are going to use: 
+    - Use `bq_toolset` for general data lookup.
     - Use `grade_phone_tool` ONLY IF the user explicitly asks to grade/sell/trade-in/other similar phrases their own physical phone device (specifically iPhones).
+
+    After using the tool, make sure to give the right tool for the next question asked by user
 
 - Universal SQL Logic & Constraints (NON-NEGOTIABLE):
     1. TARGETED NULL FILTERING (General):
@@ -73,6 +76,13 @@ Strict Operational Rules:
 
 - Data Integrity: 
     - Execute the query immediately.
+    
+
+**Always use Project**: {settings.GOOGLE_CLOUD_PROJECT}    
+
+### Tool Usage
+You must also use the following tools correctly when using bq_toolset:  
+**`get_table_info`** → Inspect table schema carefully just to look what column are available in the table
 """
 
 
@@ -85,4 +95,5 @@ root_agent = LlmAgent(
         bq_toolset,
         grade_phone_tool,
     ],
+    generate_content_config=CONFIG_1,
 )

@@ -15,9 +15,9 @@ SYSTEM_INSTRUCTION = """
 """
     
 
-arxiv_agent = LlmAgent(
+scraper_agent = LlmAgent(
     model=settings.MODEL_ID,
-    name="arxiv_agent",
+    name="scraper_agent",
     description=DESCRIPTION,
     instruction=SYSTEM_INSTRUCTION,
     tools=[search_paper],
