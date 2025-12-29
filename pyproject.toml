@@ -5,9 +5,10 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "a2a-sdk[all]>=0.3.22",
     "bs4>=0.0.2",
     "db-dtypes>=1.5.0",
-    "google-adk>=1.21.0",
+    "google-adk[a2a]>=1.21.0",
     "langchain>=1.2.0",
     "langchain-core>=1.2.5",
     "langchain-google-genai>=4.1.2",
