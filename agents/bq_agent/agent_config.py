@@ -1,7 +1,7 @@
 from google.genai import types
 
 CONFIG_1 = types.GenerateContentConfig(
-    temperature=0.2,
+    temperature=1,
     max_output_tokens=700,
     safety_settings=[
         types.SafetySetting(

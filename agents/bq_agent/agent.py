@@ -82,7 +82,8 @@ Strict Operational Rules:
 
 ### Tool Usage
 You must also use the following tools correctly when using bq_toolset:  
-**`get_table_info`** → Inspect table schema carefully just to look what column are available in the table
+- **`get_table_info`** → Always Inspect the table schema first to look what column are available in the table
+- keep finding the correct query until the appropriate data can be sent 
 """
 
 

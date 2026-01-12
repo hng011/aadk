@@ -77,61 +77,6 @@ def review_paper(pdf_urls: str, source_urls: str, tool_context: ToolContext):
             papers.append(f"Unable to process the PDF | take a look at {source_urls[i]}")
             
     return papers
+ 
 
-
-# async def _parallel_paper_review(papers: list[str], session_id, user_id):
-#     print(f"[DEBUG] Total Paper: {len(papers)}")
-    
-#     worker = []
-#     for i, content in enumerate(papers):
-#         print(f"[DEBUG] Initializing agent {i+1}:")
-        
-#         agent = LlmAgent(
-#             model=settings.MODEL_ID,
-#             name=f"reviewer_agent_{i}",
-#             instruction=f"""
-#                 As a seasoned researcher with more than 50 years of experience you are responsible to summarize the following contents                
-#                 {content}
-#             """
-#         )
-        
-#         worker.append(agent)
-        
-    
-#     parallel_research_agent = ParallelAgent(
-#         name="parallel_research_agent",
-#         sub_agents=worker,
-#         description="Runs multiple research agents in parallel to gather information."
-#     )
-    
-#     session_service = InMemorySessionService()
-#     APP_NAME = "parallel_research_agent"
-#     _ = await session_service.create_session(
-#         app_name=APP_NAME,
-#         session_id=session_id,
-#         user_id=user_id
-#     )
-#     runner = Runner(
-#         agent=parallel_research_agent, 
-#         app_name=APP_NAME,
-#         session_service=session_service
-#     )
-    
-#     try:
-#         final_answer = ""
-#         content = types.Content(role='user', parts=[types.Part(text="Run the instruction")])
-        
-#         for event in runner.run(
-#             user_id=user_id, session_id=session_id, new_message=content
-#         ):
-#             if event.is_final_response() and event.content:
-#                 final_answer += event.content.parts[0].text.strip()
-        
-#         return final_answer
-                        
-#     except Exception as e:
-#         print(f"[ERROR]: Unable to process the request {e}")
-#         return "Unable to process the request"
-    
-
-review_paper_tool = FunctionTool(review_paper)        
+review_paper_tool = FunctionTool(review_paper)
